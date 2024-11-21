@@ -1,8 +1,22 @@
 spring:
+  profiles:
+    active: local
   application:
-    name: order-service
-server:
-  port: 19092
+    name: server
+  config:
+    import: "configserver:"
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+
 eureka:
   client:
     service-url:
